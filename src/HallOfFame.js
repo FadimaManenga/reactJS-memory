@@ -1,5 +1,7 @@
 // https://github.com/deliciousinsights/ocr-memory/blob/debut-listes/src/HallOfFame.js
 
+// tableau d'honneur
+
 import React from 'react'
 
 import './HallOfFame.css'
@@ -7,7 +9,14 @@ import './HallOfFame.css'
 const HallOfFame = ({ entries }) => (
   <table className="hallOfFame">
     <tbody>
-      <tr>FIXME</tr>
+      {/* <tr>FIXME</tr> */}
+      {entries.map(({id, date, guesses,player}) => (
+        <tr key={id}>
+            <td className="date">{date}</td>
+            <td className="guesses">{guesses}</td>
+            <td className="player">{player}</td>
+        </tr>
+      ))}
     </tbody>
   </table>
 )

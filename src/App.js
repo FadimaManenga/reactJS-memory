@@ -9,6 +9,7 @@ import './App.css'
 
 import Card from './Card'
 import GuessCount from './GuessCount'
+import HallOfFame, {FAKE_HOF} from "./HallOfFame"
 
 const SIDE = 6
 const SYMBOLS = '😀🎉💖🎩🐶🐱🦄🐬🌍🌛🌞💫🍎🍌🍓🍐🍟🍿'
@@ -36,6 +37,7 @@ class App extends Component {
     return (
       <div className="memory">
         <GuessCount guesses={0} />
+    {/*
         <Card card="😀" feedback="hidden" onClick={this.handleCardClick} />
         <Card card="🎉" feedback="justMatched" onClick={this.handleCardClick} />
         <Card
@@ -46,7 +48,17 @@ class App extends Component {
         <Card card="🎩" feedback="visible" onClick={this.handleCardClick} />
         <Card card="🐶" feedback="hidden" onClick={this.handleCardClick} />
         <Card card="🐱" feedback="justMatched" onClick={this.handleCardClick} />
-        {won && <p>GAGNÉ !</p>}
+    */}
+
+    {/* 
+        Remplac. par une boucle expression en prog. fonctionnelle : map()  + clé unique (unique key) représenté par l'index 
+    */}
+        {this.cards.map((card, index) => (
+            <Card card={card} feedback="visible" onClick={this.handleCardClick} />
+        ))}
+
+        {/*{won && <p>GAGNÉ !</p>}*/}
+        {won && <p><HallOfFame entries={FAKE_HOF} /></p>}
       </div>
     )
   }
