@@ -6,9 +6,11 @@ import Card from './Card'
 
 class App extends Component {
   handleCardClick(card) {
-    console.log(card, "clicked")
+    console.log(card, "clicked") // true or false
   }
     render() {
+      const won = new Date().getSeconds() % 2 === 0;
+      console.log(won);
       return (
         // 4 possibilités de feedback
           // hidden = paire non complétée
@@ -23,6 +25,10 @@ class App extends Component {
             <Card card=":/" feedback="visible" onClick ={this.handleCardClick}/>
             <Card card=":O" feedback="hidden" onClick ={this.handleCardClick} />
             <Card card=":p" feedback="justMatched" onClick ={this.handleCardClick} />
+
+            {/*composant tenaire conditionnel*/}
+            {won && <p>GAGNE !</p>}
+
           </div>
         )
     }
