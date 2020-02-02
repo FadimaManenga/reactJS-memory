@@ -1,3 +1,5 @@
+// https://github.com/deliciousinsights/ocr-memory/blob/debut-listes/src/App.js
+
 import React, { Component } from 'react'
 // télécharg. module : npm install --save lodash.shuffle
 // import shuffle from 'lodash.shuffle'
