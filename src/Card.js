@@ -10,7 +10,7 @@ const HIDDEN_SYMBOL = '❓'
 const Card = ({ card, feedback, onClick }) => (
     // grappe enrobée par des parenthèses : ()
     <div className={`card ${feedback}`} onClick={() => onClick(card)}>
-            <span className="symbol">
+        <span className="symbol">
             {feedback === "hidden" ? HIDDEN_SYMBOL : card} 
         </span>    
     </div>
