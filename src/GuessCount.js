@@ -1,4 +1,8 @@
+// Le composant Compteur de tentatives
+
 import React from 'react'
+
+import PropTypes from "prop-types";
 
 import './GuessCount.css'
 
@@ -7,5 +11,6 @@ const GuessCount = ({guesses}) => (
         {guesses}
     </div>
 )
+
 
 export default GuessCount

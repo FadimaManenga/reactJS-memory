@@ -1,7 +1,12 @@
 // https://github.com/deliciousinsights/ocr-memory/blob/debut-listes/src/App.js
 
+// Le composant applicatif
+
 import React, { Component } from 'react'
+
 // télécharg. module : npm install --save lodash.shuffle
+  // Lodash est une bibliothèque JavaScript qui fournit des fonctions utilitaires pour les tâches de programmation courantes en utilisant le paradigme de programmation fonctionnelle.
+  // shuffle (mélanger) : crée un tableau de valeurs mélangées
 // import shuffle from 'lodash.shuffle'
 import shuffle from "lodash.shuffle"
 
