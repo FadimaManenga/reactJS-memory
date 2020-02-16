@@ -4,11 +4,12 @@ import React from 'react'
 
 import './Card.css'
 
+// la propType validation permet de définir le type de chaque accessoire. En mode développement, cela déclenche React pour enregistrer un avertissemnt, si le type des différnt de celui défin
 import PropTypes from "prop-types";
 
 const HIDDEN_SYMBOL = '❓'
 
-// destructuration de props (informations) : card, feedback
+// L'affectation par décomposition (destructuring en anglais) est une expression JavaScript qui permet d'extraire (unpack en anglais) des données d'un tableau ou d'un objet grâce à une syntaxe dont la forme ressemble à la structure du tableau ou de l'objet
     // props card : type du symbole
     // props feedback : état d'affichage du symbole
 const Card = ({ card, feedback, onClick }) => (

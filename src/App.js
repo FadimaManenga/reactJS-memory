@@ -22,27 +22,42 @@ const SYMBOLS = '😀🎉💖🎩🐶🐱🦄🐬🌍🌛🌞💫🍎🍌🍓�
 class App extends Component {
   cards = this.generateCards()
 
+  // méthode métier de création de cartes
   generateCards() {
+    // tableau résultat
     const result = []
-    const size = SIDE * SIDE
-    const candidates = shuffle(SYMBOLS)
+    // 6*6=36
+    const size = SIDE * SIDE 
+    // mélange des cartes (SYMBOLS)
+    const candidates = shuffle(SYMBOLS) 
+    // tant que la taille du tableau est < 36
     while (result.length < size) {
+      // suppression du dernier elt du tableau
+      // => MAJ taille tableau length
       const card = candidates.pop()
+      // ajout elt card en fin de tableau
+      // => MAJ taille tableau length
       result.push(card, card)
     }
+    // retour du tableau mélangé
     return shuffle(result)
   }
 
-  handleCardClick(card) {
-    console.log(card, 'clicked')
-  }
+  // méthode métier 
+    // handleCardClick(card) {
+    // Arrow fx for binding
+    handleCardClick = (card) => {
+      // console.log(card, 'clicked')
+      // this : méthode d'initialisation de champ
+      console.log(card)
+  }  
 
   render() {
     const won = new Date().getSeconds() % 2 === 0
     return (
       <div className="memory">
         <GuessCount guesses={0} />
-    {/*
+    { /*
         <Card card="😀" feedback="hidden" onClick={this.handleCardClick} />
         <Card card="🎉" feedback="justMatched" onClick={this.handleCardClick} />
         <Card
