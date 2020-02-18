@@ -12,9 +12,12 @@ const HIDDEN_SYMBOL = '❓'
 // L'affectation par décomposition (destructuring en anglais) est une expression JavaScript qui permet d'extraire (unpack en anglais) des données d'un tableau ou d'un objet grâce à une syntaxe dont la forme ressemble à la structure du tableau ou de l'objet
     // props card : type du symbole
     // props feedback : état d'affichage du symbole
-const Card = ({ card, feedback, onClick }) => (
+const Card = ({ card, feedback, index, onClick }) => (
     // grappe enrobée par des parenthèses : ()
-    <div className={`card ${feedback}`} onClick={() => onClick(card)}>
+    <div 
+        className={`card ${feedback}`} 
+        // onClick={() => onClick(card)}>
+        onClick={() => onClick(index)}>
         <span className="symbol">
             {feedback === "hidden" ? HIDDEN_SYMBOL : card} 
         </span>    
@@ -32,6 +35,7 @@ feedback: PropTypes.oneOf([
     "justMismatched",
     "visible",
 ]).isRequired, 
+index: PropTypes.number.isRequired,
 onClick: PropTypes.func.isRequired
 }
 
