@@ -18,6 +18,7 @@ import HallOfFame, {FAKE_HOF} from "./HallOfFame"
 
 const SIDE = 6
 const SYMBOLS = '😀🎉💖🎩🐶🐱🦄🐬🌍🌛🌞💫🍎🍌🍓🍐🍟🍿'
+const VISUAL_PAUSE_MSECS = 750
 
 class App extends Component {
     // Ajout d'un état local à la classe du composant principal centralisant les autres composants de l'application
@@ -53,6 +54,20 @@ class App extends Component {
         // retour du tableau mélangé
         return shuffle(result)
     };
+
+    // méthode métier - arbitrage paire constituée
+    handleNewPairClosedBy(index) {
+        const {cards, currentPair, guesses, matchedCardIndices} = this.state
+        const newPair = [currentPair[0], index]
+        const newGuesses = guesses + 1
+        const matched = cards[newPair[0]] === cards[newPair[1]]
+        this.setState({currentPair: newPair, guesses: newGuesses})
+            if (matched) {
+                // spread ...x qui "étale" les itérations du tableau, pour l'injecter dans un nouveau tableau
+                this.setState({matchedCardIndices: [...matchedCardIndices, ...newPair]})
+            }
+            setTimeout(() => this.setState({currentPair: []}), VISUAL_PAUSE_MSECS)
+    }
 
   // méthode métier 
     getFeedBackForCard(index) {
