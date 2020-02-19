@@ -13,7 +13,8 @@ import shuffle from "lodash.shuffle"
 import './App.css'
 
 import Card from './Card'
-import GuessCount from './GuessCount'
+// import GuessCount from './GuessCount'
+import HighScoreInput from "./HighScoreInput"
 import HallOfFame, {FAKE_HOF} from "./HallOfFame"
 
 const SIDE = 6
@@ -30,6 +31,8 @@ class App extends Component {
         currentPair: [],
         // nombre de tentatives de la partie en cours (nombre de paires tentées, par nombre de clics)
         guesses: 0,
+        // tableau d'honneur
+        HallOfFame: null,
         // liste les positions des cartes appartenant aux paires déjà réussies, et donc visibles de façon permanente.
         matchedCardIndices: []
     }
@@ -105,16 +108,25 @@ class App extends Component {
       }
 
       this.handleNewPairClosedBy(index)
-  }  
+  } 
+  // method métier - gestion du tableau d'honneur
+  // Arrow fx for binding 
+    displayHallOfFame = (hallOfFame) => {
+    this.setState({ hallOfFame })
+    }
 
   render() {
-    const {cards, guesses, matchedCardIndices } = this.state
-   // const won = new Date().getSeconds() % 2 === 0
-   const won = matchedCardIndices.length === cards.length
+    const {cards, guesses, hallOfFame, matchedCardIndices } = this.state
+    // const won = new Date().getSeconds() % 2 === 0
+    // TEMPORAIRE 
+    // const won = matchedCardIndices.length === 2
+    const won = matchedCardIndices.length === cards.length
     return (
       <div className="memory">
          {/* <GuessCount guesses={0} /> */}
-         <GuessCount guesses={guesses} />
+         {/* <GuessCount guesses={guesses} /> */}
+         <HighScoreInput guesses={guesses} />
+
     {/* 
         Remplac. par une boucle expression en prog. fonctionnelle : map()  + clé unique (unique key) représenté par l'index 
     */}
@@ -131,7 +143,17 @@ class App extends Component {
         ))}
 
         {/*{won && <p>GAGNÉ !</p>}*/}
-        {won && <p><HallOfFame entries={FAKE_HOF} /></p>}
+        {/* {won && <p><HallOfFame entries={FAKE_HOF} /></p>} */}
+        {
+          won && 
+          (hallOfFame ? (
+            <HallOfFame entries={FAKE_HOF} />
+          ):(
+            <HighScoreInput 
+            guesses={guesses} 
+            onStored={this.displayHallOfFame} />
+          ))
+        }
       </div>
     )
   }
