@@ -7,3 +7,8 @@ it("renders without crashing", () => {
     const div = document.createElement("div")
     ReactDom.render(<App />, div)
 })
+
+// test chai
+it("demoes", () => {
+    expect({name: "Joe"}).toEqual({name: "Jane"})
+})
