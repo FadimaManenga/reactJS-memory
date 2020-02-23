@@ -9,18 +9,29 @@ import Card from "./Card"
 
  describe('<Card />', () => {
      it("should trigger its `onClick` prop when clicked", () => {
-         // const onClick = jest.fn()
-         const onClick = sinon.spy()
-         const wrapper = shallow(
+        // const onClick = jest.fn()
+        const onClick = sinon.spy()
+        const wrapper = shallow(
              <Card 
              card="😀" 
              feelback="hidden" 
              index={0} 
-             onClick={onclick} />
-         )
-    wrapper.simulate("click")
+             onClick={onclick} />)
+        wrapper.simulate("click")
     // expect(onClick).toHaveBeenCalledWith(0)
     expect(onClick).to.have.been.calledWith(0)
+     })
+
+     it("should match its reference snapshot", () => {
+        const onClick = sinon.spy()
+        const wrapper = shallow(
+        <Card 
+        card="😀" 
+        feelback="hidden" 
+        index={0} 
+        onClick={onclick} /> )
+        expect(wrapper).to.matchSnapshot()
+
      })
  });
  

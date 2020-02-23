@@ -2,6 +2,7 @@ import {expect} from "chai"
 import {shallow } from "enzyme"
 import React from "react"
 // import ReactDom from "react-dom"
+import sinon from "sinon"
 
 
 import App from "./App"
@@ -31,6 +32,18 @@ describe('<App />', () => {
         const wrapper = shallow(<App />)
         expect(wrapper.find("card")).to.have.length(36)
     })
+
+    it("should match its reference snapshot", () => {
+        const mock = sinon
+            .stub(App.prototype, "generateCards")
+            .returns([...SYMBOLS.repeat(2)])
+        try {
+            const wrapper = shallow(<App />)
+            expect(wrapper).to.matchSnapshot()
+        } finally {
+            mock.restore()
+        }  
+     })
 
 });
 
